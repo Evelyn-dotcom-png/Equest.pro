@@ -66,3 +66,69 @@ if (form) {
 
 // Render listings if on the Listings page
 document.addEventListener('DOMContentLoaded', renderListings);
+// Sample user database stored in localStorage
+// Note: In a real app, password should be hashed and stored securely
+const users = JSON.parse(localStorage.getItem('users')) || [];
+
+// Sign-up Function
+function handleSignup(event) {
+  event.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  // Check if the username already exists
+  if (users.find(user => user.username === username)) {
+    alert('Username already exists!');
+    return;
+  }
+
+  // Add new user to the database (localStorage)
+  users.push({ username, password });
+  localStorage.setItem('users', JSON.stringify(users));
+
+  alert('Sign-up successful!');
+  window.location.href = 'login.html'; // Redirect to login page
+}
+
+// Login Function
+function handleLogin(event) {
+  event.preventDefault();
+
+  const username = document.getElementById('login-username').value;
+  const password = document.getElementById('login-password').value;
+
+  // Find the user in the localStorage database
+  const user = users.find(user => user.username === username && user.password === password);
+
+  if (!user) {
+    alert('Invalid username or password');
+    return;
+  }
+
+  // Successful login, set user session (using localStorage for demo purposes)
+  localStorage.setItem('currentUser', username);
+
+  alert('Login successful!');
+  window.location.href = 'index.html'; // Redirect to homepage or dashboard
+}
+
+// Attach events to forms
+const signupForm = document.getElementById('signup-form');
+const loginForm = document.getElementById('login-form');
+
+if (signupForm) {
+  signupForm.addEventListener('submit', handleSignup);
+}
+
+if (loginForm) {
+  loginForm.addEventListener('submit', handleLogin);
+}
+
+// Check if user is already logged in (e.g., on homepage)
+document.addEventListener('DOMContentLoaded', () => {
+  const currentUser = localStorage.getItem('currentUser');
+  if (currentUser) {
+    alert(`Welcome back, ${currentUser}!`);
+  }
+});
