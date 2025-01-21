@@ -116,3 +116,61 @@ if (form) {
 
 // Render listings on page load
 renderListings();
+// Select the form and listings container
+const form = document.querySelector('#listing-form');
+const listingsContainer = document.querySelector('#listings-container');
+
+// Load listings from localStorage or initialize an empty array
+const listings = JSON.parse(localStorage.getItem('listings')) || [];
+
+// Log current listings for debugging
+console.log('Loaded listings from localStorage:', listings);
+
+// Function to render listings on the listings page
+function renderListings() {
+  if (listingsContainer) {
+    console.log('Rendering listings...');
+    listingsContainer.innerHTML = ''; // Clear existing listings
+    listings.forEach((listing, index) => {
+      const listingElement = document.createElement('div');
+      listingElement.classList.add('listing');
+      listingElement.innerHTML = `
+        <h3>${listing.name}</h3>
+        <p><strong>Sex:</strong> ${listing.sex}</p>
+        <p><strong>Breed:</strong> ${listing.breed}</p>
+        <p><strong>Age:</strong> ${listing.age}</p>
+        <p><strong>Color:</strong> ${listing.color}</p>
+        <p><strong>Description:</strong> ${listing.description}</p>
+        <p><strong>Price:</strong> $${listing.price}</p>
+        <p><strong>Location:</strong> ${listing.location}</p>
+      `;
+      listingsContainer.appendChild(listingElement);
+    });
+  }
+}
+
+// Add event listener to save form data to localStorage
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const newListing = {
+      name: formData.get('name'),
+      sex: formData.get('sex'),
+      breed: formData.get('breed'),
+      age: formData.get('age'),
+      color: formData.get('color'),
+      description: formData.get('description'),
+      price: formData.get('price'),
+      location: formData.get('location'),
+    };
+    listings.push(newListing);
+    localStorage.setItem('listings', JSON.stringify(listings)); // Save to localStorage
+    console.log('New listing added:', newListing);
+    alert('Listing submitted successfully!');
+    form.reset(); // Clear the form
+  });
+}
+
+// Render listings on page load
+renderListings();
