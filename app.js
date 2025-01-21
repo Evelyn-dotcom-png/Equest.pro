@@ -66,6 +66,7 @@ if (form) {
 
 // Render listings if on the Listings page
 document.addEventListener('DOMContentLoaded', renderListings);
+
 // Sample user database stored in localStorage
 // Note: In a real app, password should be hashed and stored securely
 const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -76,6 +77,12 @@ function handleSignup(event) {
 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
+
+  // Validate username and password
+  if (!username || !password) {
+    alert('Username and password are required.');
+    return;
+  }
 
   // Check if the username already exists
   if (users.find(user => user.username === username)) {
@@ -97,6 +104,12 @@ function handleLogin(event) {
 
   const username = document.getElementById('login-username').value;
   const password = document.getElementById('login-password').value;
+
+  // Validate username and password
+  if (!username || !password) {
+    alert('Please enter both username and password.');
+    return;
+  }
 
   // Find the user in the localStorage database
   const user = users.find(user => user.username === username && user.password === password);
