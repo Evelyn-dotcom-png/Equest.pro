@@ -5,16 +5,31 @@ body {
   padding: 0;
   background-color: #f5f5dc; /* Pale brown background */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
+/* Main Wrapper Container */
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Header and Footer Styles */
 header, footer {
   background-color: #355e3b; /* Hunter green background */
   color: white; /* White text for contrast */
   padding: 15px 0;
   text-align: center;
+  width: 100%;
 }
 
 header h1, footer h1 {
@@ -22,37 +37,100 @@ header h1, footer h1 {
   font-size: 2.5em;
 }
 
-nav {
-  margin-top: 10px;
+/* Main Content Section */
+main {
+  width: 100%;
+  padding: 30px 0;
 }
 
-nav a {
-  color: white; /* White links for contrast */
-  margin: 0 20px;
-  text-decoration: none;
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 50px 0;
+  background-color: #f5f5dc; /* Pale brown background for hero section */
+}
+
+.hero h2 {
+  font-size: 2.5em;
+  color: #355e3b; /* Hunter green heading */
+}
+
+.hero p {
   font-size: 1.2em;
+  color: #34495e; /* Darker text color for readability */
 }
 
-nav a:hover {
-  text-decoration: underline;
+button {
+  padding: 15px 30px;
+  background-color: #3498db; /* Blue button color */
+  color: white;
+  font-size: 1.2em;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-/* Auth Pages (Login/Signup) */
-.auth-container {
+button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Form Styling */
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
-  padding: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+form input, form textarea, form select {
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  width: 100%;
+  padding: 15px;
+  background-color: #3498db;
+  color: white;
+  font-size: 1.2em;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #2980b9;
+}
+
+/* Auth (Login/Signup) Specific Styles */
+.auth-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  text-align: center;
 }
 
 .auth-container h2 {
-  font-size: 2em;
   color: #355e3b;
+  font-size: 2.5em;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .auth-container label {
@@ -87,7 +165,6 @@ nav a:hover {
 
 .auth-container .redirect-link {
   font-size: 1.1em;
-  text-align: center;
 }
 
 .auth-container .redirect-link a {
@@ -99,17 +176,30 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* Responsive Design */
+/* Listings Page */
+#listings-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-  body {
+  .hero {
+    padding: 20px 0;
+  }
+  .container {
     padding: 10px;
   }
+}
 
-  .auth-container {
-    padding: 20px;
-  }
-
-  .auth-container h2 {
-    font-size: 1.8em;
-  }
+/* Footer Styles */
+footer {
+  margin-top: auto;
+  padding: 20px;
+  background-color: #355e3b;
+  color: white;
+  text-align: center;
 }
