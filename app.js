@@ -145,3 +145,4 @@ document.addEventListener('DOMContentLoaded', () => {
     alert(`Welcome back, ${currentUser}!`);
   }
 });
+<script src="app.js"></script>
