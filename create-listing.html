@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Horse Listing - EQUEST</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Create Your Horse Listing</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="create-listing.html">Create Listing</a>
+      <a href="listings.html">Listed Horses</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id="listingForm" onsubmit="submitListing(event)">
+      <label for="name">Horse Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="sex">Sex</label>
+      <select id="sex" name="sex">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+      <label for="breed">Breed</label>
+      <input type="text" id="breed" name="breed" required>
+
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" required>
+
+      <label for="color">Color</label>
+      <input type="text" id="color" name="color" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" required></textarea>
+
+      <label for="price">Price</label>
+      <input type="number" id="price" name="price" required>
+
+      <label for="photo">Photo</label>
+      <input type="file" id="photo" name="photo" accept="image/*">
+
+      <label for="contact">Contact Information</label>
+      <input type="text" id="contact" name="contact" required>
+
+      <label for="location">Location</label>
+      <select id="location" name="location" required>
+        <option value="United States">United States</option>
+        <option value="Canada">Canada</option>
+        <option value="Europe">Europe</option>
+        <option value="Australia">Australia</option>
+      </select>
+
+      <button type="submit">Submit Listing</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 EQUEST - All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
