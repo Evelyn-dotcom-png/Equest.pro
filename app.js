@@ -63,3 +63,56 @@ function submitListing(event) {
   const name = document.getElementById('name').value;
   const sex = document.getElementById('sex').value;
   const breed = document.getElementById('breed').value
+// Get form and listings container
+const form = document.querySelector('#listing-form'); // Replace with your form's ID
+const listingsContainer = document.querySelector('#listings-container'); // Replace with your listings container's ID
+
+// Load existing listings from localStorage
+const listings = JSON.parse(localStorage.getItem('listings')) || [];
+
+// Function to render listings on the listings page
+function renderListings() {
+  if (listingsContainer) {
+    listingsContainer.innerHTML = ''; // Clear existing listings
+    listings.forEach(listing => {
+      const listingElement = document.createElement('div');
+      listingElement.classList.add('listing');
+      listingElement.innerHTML = `
+        <h3>${listing.name}</h3>
+        <p><strong>Sex:</strong> ${listing.sex}</p>
+        <p><strong>Breed:</strong> ${listing.breed}</p>
+        <p><strong>Age:</strong> ${listing.age}</p>
+        <p><strong>Color:</strong> ${listing.color}</p>
+        <p><strong>Description:</strong> ${listing.description}</p>
+        <p><strong>Price:</strong> $${listing.price}</p>
+        <p><strong>Location:</strong> ${listing.location}</p>
+      `;
+      listingsContainer.appendChild(listingElement);
+    });
+  }
+}
+
+// Save new listing to localStorage
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const newListing = {
+      name: formData.get('name'),
+      sex: formData.get('sex'),
+      breed: formData.get('breed'),
+      age: formData.get('age'),
+      color: formData.get('color'),
+      description: formData.get('description'),
+      price: formData.get('price'),
+      location: formData.get('location')
+    };
+    listings.push(newListing);
+    localStorage.setItem('listings', JSON.stringify(listings)); // Save to localStorage
+    alert('Listing submitted successfully!');
+    form.reset(); // Reset form
+  });
+}
+
+// Render listings on page load
+renderListings();
